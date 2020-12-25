@@ -16,7 +16,7 @@ function help {
     interactive )
         echo "interactive and press enter"
     ;;
-    "exit" )
+    Exit )
         echo "exit and exit code"
     ;;
     *) echo "Use commands calc/search/reverse/strlen/interactive/exit"
