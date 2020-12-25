@@ -105,6 +105,8 @@ interactive )
     fi
 ;;
 Exit )
+if [[ $# -gt 1 ]] ; 
+then
     if [[ -e "Exit.sh" ]] ;
     then 
         . ./Exit.sh
@@ -115,7 +117,12 @@ Exit )
     else
         echo "Gde Exit.sh?" >&2
     fi
-    ;;
+else
+    echo "Na pomosh" >&2
+    . ./help.sh
+    help Exit
+fi
+;;
 * )
     echo "No such command" >&2
     . ./help.sh
