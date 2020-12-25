@@ -91,22 +91,15 @@ function interactive {
     g )
     echo "Enter exit code"
     read num
-    if [[ -n $num ]] ; 
-    then
-        if (echo "$num" | grep -E -q "^-?[0-9]+$");
-        then
-            if [[ $num -gt 255 ]] || [[ $num -lt 0 ]]; 
-            then
-                echo "Exit number must be in (0, 255)" >&2
-                exit 1
-            fi
-            exit $num
-        else
-            echo "Not a Number" >&2
-            exit 1
-        fi
+    if [[ -e "Exit.sh" ]] ;
+    then 
+        . ./Exit.sh
+        Exit $num
+    elif ! [[ -r "Exit.sh" ]] ;
+    then 
+        echo "Ne chitaetsa Exit.sh" >&2
     else
-        exit 0    
+        echo "Gde Exit.sh?" >&2
     fi
     ;;
     * )
