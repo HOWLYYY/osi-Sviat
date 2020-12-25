@@ -104,25 +104,18 @@ interactive )
         echo "Gde Interactive.sh?" >&2
     fi
 ;;
-"exit" )
-if [[ $# -gt 1 ]] ; 
-then
-    if (echo "$2" | grep -E -q "^-?[0-9]+$") ; 
-    then
-        if [[ $2 -gt 255 ]] || [[ $2 -lt 0 ]] ; 
-        then
-            echo "Exit number must be in (0, 255)" >&2
-            exit 1
-        fi
-    exit $2
+Exit )
+    if [[ -e "Exit.sh" ]] ;
+    then 
+        . ./Exit.sh
+        Exit $2
+    elif ! [[ -r "Exit.sh" ]] ;
+    then 
+        echo "Ne chitaetsa Exit.sh" >&2
     else
-        echo "Not Number" >&2
-        exit 1
+        echo "Gde Exit.sh?" >&2
     fi
-else
-exit 0
-fi
-;;
+    ;;
 * )
     echo "No such command" >&2
     . ./help.sh
